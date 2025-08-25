@@ -5,28 +5,37 @@ sap.ui.define([
   "use strict";
 
   return Controller.extend("converted.purchaseorderdetailsview.controller.App", {
+    /**
+     * Called when a view is instantiated and its controls (if available) are already created.
+     * Used to generally initialize the view and attach event handlers.
+     * @public
+     */
     onInit: function () {
+      // Log initialization message
       console.log("App controller initialized");
-      
+
       // Get the router instance
       var oRouter = UIComponent.getRouterFor(this);
-      
+
+      // Check if router is available
       if (oRouter) {
         console.log("Router found, initializing navigation");
-        
-        // Add error handling for routing
-        oRouter.attachBypassed(function(oEvent) {
+
+        // Attach event handler for bypassed routes
+        oRouter.attachBypassed(function (oEvent) {
           console.log("Route bypassed:", oEvent.getParameter("hash"));
         });
-        
-        // Navigate to main view if no hash is set
+
+        // Check if initial hash is empty, navigate to the main route if needed
         if (!window.location.hash || window.location.hash === "#") {
           console.log("No hash found, navigating to main route");
-          setTimeout(function() {
-            oRouter.navTo("RouteMain");
+          // Use timeout to ensure router is fully initialized
+          setTimeout(function () {
+            oRouter.navTo("main");
           }, 100);
         }
       } else {
+        // Log an error if the router is not found
         console.error("Router not found in App controller");
       }
     }
