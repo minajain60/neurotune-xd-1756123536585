@@ -59,21 +59,21 @@
                         <Label text="Payment in"/>
                         <layout:HorizontalLayout>
                           <Input id="paymentDays1" value="{deliveryInvoice>/PaymentDays1}" width="40px" type="Number"/>
-                          <Text text="days"/>
+                          <Text text="days" width="30px"/>
                           <Input id="paymentDiscount1" value="{deliveryInvoice>/PaymentDiscount1}" width="50px" type="Number"/>
-                          <Text text="%"/>
+                          <Text text="%" width="10px"/>
                         </layout:HorizontalLayout>
                         <Label text="Payment in"/>
                         <layout:HorizontalLayout>
                           <Input id="paymentDays2" value="{deliveryInvoice>/PaymentDays2}" width="40px" type="Number"/>
-                          <Text text="days"/>
+                          <Text text="days" width="30px"/>
                           <Input id="paymentDiscount2" value="{deliveryInvoice>/PaymentDiscount2}" width="50px" type="Number"/>
-                          <Text text="%"/>
+                          <Text text="%" width="10px"/>
                         </layout:HorizontalLayout>
                         <Label text="Payment in"/>
                         <layout:HorizontalLayout>
                           <Input id="paymentDays3" value="{deliveryInvoice>/PaymentDays3}" width="40px" type="Number"/>
-                          <Text text="days net"/>
+                          <Text text="days net" width="50px"/>
                         </layout:HorizontalLayout>
                         <Label text="Incoterms"/>
                         <layout:HorizontalLayout>
