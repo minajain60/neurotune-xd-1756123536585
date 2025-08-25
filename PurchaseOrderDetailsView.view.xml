@@ -29,102 +29,88 @@
       </Bar>
     </customHeader>
     <content>
-      <layout:MatrixLayout id="mainViewLayout" columns="1" width="100%">
-        <layout:MatrixLayoutRow>
-          <layout:MatrixLayoutCell>
-            <layout:Grid defaultSpan="XL3 L3 M6 S12" width="100%">
-              <Image id="cartIcon" src="sap-icon://cart" width="16px" height="16px" tooltip="Purchase Order"/>
-              <Label text="Standard PO" design="Bold"/>
-              <Select id="poTypeDropdown" width="150px" selectedKey="{header>/PoTypeKey}" change="onSelectPoType">
-                <core:Item key="Type1" text="Type 1"/>
-                <core:Item key="Type 2" text="Type 2"/>
-              </Select>
-              <Input id="poNumberField" value="{header>/PoNumber}" width="100px" editable="false"/>
-              <Label text="Vendor" design="Bold"/>
-              <Input id="vendorField" value="{header>/VendorName}" width="200px" editable="false"/>
-              <Label text="Doc. date" design="Bold"/>
-              <Input id="docDateField" value="{header>/DocumentDate}" width="100px" editable="false"/>
-            </layout:Grid>
-          </layout:MatrixLayoutCell>
-        </layout:MatrixLayoutRow>
-        <layout:MatrixLayoutRow>
-          <layout:MatrixLayoutCell>
-            <IconTabBar id="detailsTabStrip" expandable="false" expanded="true" selectedKey="deliveryInvoiceTab" select="onSelectTab" width="100%">
-              <items>
-                <IconTabFilter id="deliveryInvoiceTab" text="Delivery/Invoice" key="deliveryInvoiceTab">
-                  <content>
-                    <layout:MatrixLayout id="deliveryInvoiceContentLayout" columns="2" cellSpacing="10px" width="100%">
-                      <layout:MatrixLayoutRow>
-                        <layout:MatrixLayoutCell>
-                          <form:SimpleForm id="paymentTermsForm" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
-                            <form:content>
-                              <Label text="Payment Terms"/>
-                              <layout:HorizontalLayout>
-                                <Input id="paymentTermsKey" value="{deliveryInvoice>/PaymentTermsKey}" width="50px"/>
-                                <Button id="paymentTermsSearch" icon="sap-icon://search" tooltip="Search Payment Terms" press="onActionSearchPaymentTerms"/>
-                              </layout:HorizontalLayout>
-                              <Label text="Payment in"/>
-                              <layout:HorizontalLayout>
-                                <Input id="paymentDays1" value="{deliveryInvoice>/PaymentDays1}" width="40px" type="Number"/>
-                                <Text text="days"/>
-                                <Input id="paymentDiscount1" value="{deliveryInvoice>/PaymentDiscount1}" width="50px" type="Number"/>
-                                <Text text="%"/>
-                              </layout:HorizontalLayout>
-                              <Label text="Payment in"/>
-                              <layout:HorizontalLayout>
-                                <Input id="paymentDays2" value="{deliveryInvoice>/PaymentDays2}" width="40px" type="Number"/>
-                                <Text text="days"/>
-                                <Input id="paymentDiscount2" value="{deliveryInvoice>/PaymentDiscount2}" width="50px" type="Number"/>
-                                <Text text="%"/>
-                              </layout:HorizontalLayout>
-                              <Label text="Payment in"/>
-                              <layout:HorizontalLayout>
-                                <Input id="paymentDays3" value="{deliveryInvoice>/PaymentDays3}" width="40px" type="Number"/>
-                                <Text text="days net"/>
-                              </layout:HorizontalLayout>
-                              <Label text="Incoterms"/>
-                              <layout:HorizontalLayout>
-                                <Input id="incotermsCode" value="{deliveryInvoice>/IncotermsCode}" width="50px"/>
-                                <Input id="incotermsLocation" value="{deliveryInvoice>/IncotermsLocation}" width="150px"/>
-                              </layout:HorizontalLayout>
-                            </form:content>
-                          </form:SimpleForm>
-                        </layout:MatrixLayoutCell>
-                        <layout:MatrixLayoutCell>
-                          <form:SimpleForm id="currencyForm" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
-                            <form:content>
-                              <Label text="Currency"/>
-                              <Input id="currencyValue" value="{deliveryInvoice>/Currency}" width="60px" editable="false"/>
-                              <Label text="Exchange Rate"/>
-                              <layout:HorizontalLayout>
-                                <Input id="exchangeRateValue" value="{deliveryInvoice>/ExchangeRate}" width="80px" type="Number"/>
-                                <CheckBox id="exchRateFixed" text="Exch.Rate Fixed" selected="{deliveryInvoice>/ExchangeRateFixed}" select="onToggleExchangeRateFixed"/>
-                              </layout:HorizontalLayout>
-                            </form:content>
-                          </form:SimpleForm>
-                        </layout:MatrixLayoutCell>
-                      </layout:MatrixLayoutRow>
-                      <layout:MatrixLayoutRow>
-                        <layout:MatrixLayoutCell>
-                          <CheckBox id="grMessageCheckbox" text="GR Message" selected="{deliveryInvoice>/GRMessage}" select="onToggleGRMessage"/>
-                        </layout:MatrixLayoutCell>
-                      </layout:MatrixLayoutRow>
-                    </layout:MatrixLayout>
-                  </content>
-                </IconTabFilter>
-                <IconTabFilter id="conditionsTab" text="Conditions" key="conditionsTab"/>
-                <IconTabFilter id="textsTab" text="Texts" key="textsTab"/>
-                <IconTabFilter id="addressTab" text="Address" key="addressTab"/>
-                <IconTabFilter id="communicationTab" text="Communication" key="communicationTab"/>
-                <IconTabFilter id="partnersTab" text="Partners" key="partnersTab"/>
-                <IconTabFilter id="additionalDataTab" text="Additional Data" key="additionalDataTab"/>
-                <IconTabFilter id="orgDataTab" text="Org. Data" key="orgDataTab"/>
-                <IconTabFilter id="statusTab" text="Status" key="statusTab"/>
-              </items>
-            </IconTabBar>
-          </layout:MatrixLayoutCell>
-        </layout:MatrixLayoutRow>
-      </layout:MatrixLayout>
+      <layout:Grid defaultSpan="XL12 L12 M12 S12" width="100%">
+        <layout:content>
+          <layout:Grid defaultSpan="XL3 L3 M6 S12">
+            <Image id="cartIcon" src="sap-icon://cart" width="16px" height="16px" tooltip="Purchase Order"/>
+            <Label text="Standard PO" design="Bold"/>
+            <Select id="poTypeDropdown" width="150px" selectedKey="{header>/PoTypeKey}" change="onSelectPoType">
+              <core:Item key="Type1" text="Type 1"/>
+              <core:Item key="Type 2" text="Type 2"/>
+            </Select>
+            <Input id="poNumberField" value="{header>/PoNumber}" width="100px" editable="false"/>
+            <Label text="Vendor" design="Bold"/>
+            <Input id="vendorField" value="{header>/VendorName}" width="200px" editable="false"/>
+            <Label text="Doc. date" design="Bold"/>
+            <Input id="docDateField" value="{header>/DocumentDate}" width="100px" editable="false"/>
+          </layout:Grid>
+          <IconTabBar id="detailsTabStrip" expandable="false" expanded="true" selectedKey="deliveryInvoiceTab" select="onSelectTab" width="100%">
+            <items>
+              <IconTabFilter id="deliveryInvoiceTab" text="Delivery/Invoice" key="deliveryInvoiceTab">
+                <content>
+                  <layout:Grid defaultSpan="XL6 L6 M12 S12" hSpacing="1">
+                    <form:SimpleForm id="paymentTermsForm" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                      <form:content>
+                        <Label text="Payment Terms"/>
+                        <layout:HorizontalLayout>
+                          <Input id="paymentTermsKey" value="{deliveryInvoice>/PaymentTermsKey}" width="50px"/>
+                          <Button id="paymentTermsSearch" icon="sap-icon://search" tooltip="Search Payment Terms" press="onActionSearchPaymentTerms"/>
+                        </layout:HorizontalLayout>
+                        <Label text="Payment in"/>
+                        <layout:HorizontalLayout>
+                          <Input id="paymentDays1" value="{deliveryInvoice>/PaymentDays1}" width="40px" type="Number"/>
+                          <Text text="days"/>
+                          <Input id="paymentDiscount1" value="{deliveryInvoice>/PaymentDiscount1}" width="50px" type="Number"/>
+                          <Text text="%"/>
+                        </layout:HorizontalLayout>
+                        <Label text="Payment in"/>
+                        <layout:HorizontalLayout>
+                          <Input id="paymentDays2" value="{deliveryInvoice>/PaymentDays2}" width="40px" type="Number"/>
+                          <Text text="days"/>
+                          <Input id="paymentDiscount2" value="{deliveryInvoice>/PaymentDiscount2}" width="50px" type="Number"/>
+                          <Text text="%"/>
+                        </layout:HorizontalLayout>
+                        <Label text="Payment in"/>
+                        <layout:HorizontalLayout>
+                          <Input id="paymentDays3" value="{deliveryInvoice>/PaymentDays3}" width="40px" type="Number"/>
+                          <Text text="days net"/>
+                        </layout:HorizontalLayout>
+                        <Label text="Incoterms"/>
+                        <layout:HorizontalLayout>
+                          <Input id="incotermsCode" value="{deliveryInvoice>/IncotermsCode}" width="50px"/>
+                          <Input id="incotermsLocation" value="{deliveryInvoice>/IncotermsLocation}" width="150px"/>
+                        </layout:HorizontalLayout>
+                      </form:content>
+                    </form:SimpleForm>
+                  </layout:Grid>
+                  <layout:Grid defaultSpan="XL6 L6 M12 S12" hSpacing="1">
+                    <form:SimpleForm id="currencyForm" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                      <form:content>
+                        <Label text="Currency"/>
+                        <Input id="currencyValue" value="{deliveryInvoice>/Currency}" width="60px" editable="false"/>
+                        <Label text="Exchange Rate"/>
+                        <layout:HorizontalLayout>
+                          <Input id="exchangeRateValue" value="{deliveryInvoice>/ExchangeRate}" width="80px" type="Number"/>
+                          <CheckBox id="exchRateFixed" text="Exch.Rate Fixed" selected="{deliveryInvoice>/ExchangeRateFixed}" select="onToggleExchangeRateFixed"/>
+                        </layout:HorizontalLayout>
+                      </form:content>
+                    </form:SimpleForm>
+                  </layout:Grid>
+                  <CheckBox id="grMessageCheckbox" text="GR Message" selected="{deliveryInvoice>/GRMessage}" select="onToggleGRMessage"/>
+                </content>
+              </IconTabFilter>
+              <IconTabFilter id="conditionsTab" text="Conditions" key="conditionsTab"/>
+              <IconTabFilter id="textsTab" text="Texts" key="textsTab"/>
+              <IconTabFilter id="addressTab" text="Address" key="addressTab"/>
+              <IconTabFilter id="communicationTab" text="Communication" key="communicationTab"/>
+              <IconTabFilter id="partnersTab" text="Partners" key="partnersTab"/>
+              <IconTabFilter id="additionalDataTab" text="Additional Data" key="additionalDataTab"/>
+              <IconTabFilter id="orgDataTab" text="Org. Data" key="orgDataTab"/>
+              <IconTabFilter id="statusTab" text="Status" key="statusTab"/>
+            </items>
+          </IconTabBar>
+        </layout:content>
+      </layout:Grid>
     </content>
   </Page>
 </mvc:View>
