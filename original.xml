@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebDynpro xmlns="http://www.sap.com/wd/webdynpro">
+  <View name="PurchaseOrderDetailsView">
+    <Title text="Standard PO 4500017100 Created by ZECHA"/>
+    
+    <Layout>
+      <MatrixLayout id="mainViewLayout" columns="1" width="100%">
+        <MatrixHead>
+          <!-- Toolbar Section -->
+          <MatrixDataFlow>
+            <Toolbar id="mainToolbar" design="Transparent" width="100%">
+              <ToolbarButton id="backButton" text="" icon="~sap/public/bc/icons/s_b_bck.gif" tooltip="Back" onAction="onActionBack"/>
+              <ToolbarSeparator id="sep1"/>
+              <ToolbarButton id="saveButton" text="" icon="~sap/public/bc/icons/s_b_save.gif" tooltip="Save" onAction="onActionSave"/>
+              <DropDownByIndex id="saveDropdown" width="100px" selectedKey="{/Header/SaveOption}" onSelect="onSelectSaveOption">
+                  <Items>
+                      <CollectionRef list="{/SaveOptions}" />
+                  </Items>
+              </DropDownByIndex>
+              <ToolbarButton id="documentOverviewButton" text="Document Overview On" icon="~sap/public/bc/icons/s_document.gif" onAction="onActionDocumentOverview" tooltip="Document Overview"/>
+              <ToolbarButton id="documentIcon" text="" icon="~sap/public/bc/icons/s_object.gif" onAction="onActionDocumentIcon" tooltip="Display Document"/>
+              <ToolbarButton id="editIcon" text="" icon="~sap/public/bc/icons/s_edit.gif" onAction="onActionEdit" tooltip="Edit"/>
+              <ToolbarButton id="exportIcon" text="" icon="~sap/public/bc/icons/s_export.gif" onAction="onActionExport" tooltip="Export"/>
+              <ToolbarButton id="printPreviewButton" text="Print Preview" icon="~sap/public/bc/icons/s_print.gif" onAction="onActionPrintPreview" tooltip="Print Preview"/>
+              <ToolbarButton id="messagesButton" text="Messages" icon="~sap/public/bc/icons/s_msg.gif" onAction="onActionMessages" tooltip="Messages"/>
+              <ToolbarButton id="infoButton" text="" icon="~sap/public/bc/icons/s_info.gif" onAction="onActionInfo" tooltip="Information"/>
+              <ToolbarButton id="personalSettingButton" text="Personal Setting" icon="~sap/public/bc/icons/s_settings.gif" onAction="onActionPersonalSetting" tooltip="Personal Setting"/>
+              <ToolbarButton id="cancelButton" text="Cancel" icon="" onAction="onActionCancel" tooltip="Cancel"/>
+            </Toolbar>
+          </MatrixDataFlow>
+
+          <!-- Document Header Section (below toolbar) -->
+          <MatrixDataFlow>
+            <FlowLayout id="documentHeaderFlowLayout" wrap="true" padding="5px 10px 5px 10px">
+                <Image id="cartIcon" source="~sap/public/bc/icons/s_shopping_cart.gif" width="16px" height="16px" tooltip="Purchase Order"/>
+                <TextView id="poTypeLabel" text="Standard PO" design="Label" paddingLeft="5px"/>
+                <DropDownByIndex id="poTypeDropdown" width="150px" selectedKey="{/Header/PoTypeKey}" onSelect="onSelectPoType">
+                    <Items>
+                        <CollectionRef list="{/PoTypes}" />
+                    </Items>
+                </DropDownByIndex>
+                <InputField id="poNumberField" value="{/Header/PoNumber}" width="100px" readOnly="true" design="Standard"/>
+                <TextView id="vendorLabel" text="Vendor" design="Label" paddingLeft="20px"/>
+                <InputField id="vendorField" value="{/Header/VendorName}" width="200px" readOnly="true" design="Standard"/>
+                <TextView id="docDateLabel" text="Doc. date" design="Label" paddingLeft="20px"/>
+                <InputField id="docDateField" value="{/Header/DocumentDate}" width="100px" readOnly="true" design="Standard"/>
+            </FlowLayout>
+          </MatrixDataFlow>
+        </MatrixHead>
+        
+        <!-- Tab Strip Section -->
+        <MatrixDataFlow>
+          <TabStrip id="detailsTabStrip" selectedTabId="deliveryInvoiceTab" onSelect="onSelectTab" width="100%">
+            <Tab id="deliveryInvoiceTab" text="Delivery/Invoice">
+              <Layout>
+                  <MatrixLayout id="deliveryInvoiceContentLayout" columns="2" cellSpacing="10px" padding="10px">
+                      <!-- Left Column - Payment Terms & Incoterms -->
+                      <MatrixDataFlow>
+                          <LayoutData>
+                              <MatrixLayoutData colSpan="1" />
+                          </LayoutData>
+                          <FormContainer id="paymentTermsForm" layout="GridLayout" labelColumnWidth="150px">
+                              <FormElement id="paymentTermsElement">
+                                  <Label text="Payment Terms"/>
+                                  <FlowLayout id="paymentTermsInputLayout">
+                                      <InputField id="paymentTermsKey" value="{/DeliveryInvoice/PaymentTermsKey}" width="50px"/>
+                                      <Button id="paymentTermsSearch" text="" icon="~sap/public/bc/icons/s_search.gif" tooltip="Search Payment Terms" onAction="onActionSearchPaymentTerms"/>
+                                  </FlowLayout>
+                              </FormElement>
+                              <FormElement id="paymentIn1Element">
+                                  <Label text="Payment in"/>
+                                  <FlowLayout id="paymentIn1Layout">
+                                      <InputField id="paymentDays1" value="{/DeliveryInvoice/PaymentDays1}" width="40px" type="Integer"/>
+                                      <TextView id="days1Text" text="days" paddingLeft="5px" paddingRight="5px"/>
+                                      <InputField id="paymentDiscount1" value="{/DeliveryInvoice/PaymentDiscount1}" width="50px" type="Decimal"/>
+                                      <TextView id="percent1Text" text="%"/>
+                                  </FlowLayout>
+                              </FormElement>
+                              <FormElement id="paymentIn2Element">
+                                  <Label text="Payment in"/>
+                                  <FlowLayout id="paymentIn2Layout">
+                                      <InputField id="paymentDays2" value="{/DeliveryInvoice/PaymentDays2}" width="40px" type="Integer"/>
+                                      <TextView id="days2Text" text="days" paddingLeft="5px" paddingRight="5px"/>
+                                      <InputField id="paymentDiscount2" value="{/DeliveryInvoice/PaymentDiscount2}" width="50px" type="Decimal"/>
+                                      <TextView id="percent2Text" text="%"/>
+                                  </FlowLayout>
+                              </FormElement>
+                              <FormElement id="paymentIn3Element">
+                                  <Label text="Payment in"/>
+                                  <FlowLayout id="paymentIn3Layout">
+                                      <InputField id="paymentDays3" value="{/DeliveryInvoice/PaymentDays3}" width="40px" type="Integer"/>
+                                      <TextView id="days3Text" text="days net" paddingLeft="5px"/>
+                                  </FlowLayout>
+                              </FormElement>
+                              <FormElement id="incotermsElement">
+                                  <Label text="Incoterms"/>
+                                  <FlowLayout id="incotermsInputLayout">
+                                      <InputField id="incotermsCode" value="{/DeliveryInvoice/IncotermsCode}" width="50px"/>
+                                      <InputField id="incotermsLocation" value="{/DeliveryInvoice/IncotermsLocation}" width="150px"/>
+                                  </FlowLayout>
+                              </FormElement>
+                          </FormContainer>
+                      </MatrixDataFlow>
+
+                      <!-- Right Column - Currency & Exchange Rate -->
+                      <MatrixDataFlow>
+                          <LayoutData>
+                              <MatrixLayoutData colSpan="1" />
+                          </LayoutData>
+                          <FormContainer id="currencyForm" layout="GridLayout" labelColumnWidth="150px">
+                              <FormElement id="currencyElement">
+                                  <Label text="Currency"/>
+                                  <InputField id="currencyValue" value="{/DeliveryInvoice/Currency}" width="60px" readOnly="true"/>
+                              </FormElement>
+                              <FormElement id="exchangeRateElement">
+                                  <Label text="Exchange Rate"/>
+                                  <FlowLayout id="exchangeRateLayout">
+                                      <InputField id="exchangeRateValue" value="{/DeliveryInvoice/ExchangeRate}" width="80px" type="Decimal"/>
+                                      <CheckBox id="exchRateFixed" text="Exch.Rate Fixed" checked="{/DeliveryInvoice/ExchangeRateFixed}" onToggle="onToggleExchangeRateFixed" paddingLeft="10px"/>
+                                  </FlowLayout>
+                              </FormElement>
+                          </FormContainer>
+                      </MatrixDataFlow>
+
+                      <!-- GR Message Checkbox (appears below the main left form content) -->
+                      <MatrixDataFlow>
+                          <LayoutData>
+                              <MatrixLayoutData colSpan="1" />
+                          </LayoutData>
+                          <FlowLayout id="grMessageLayout" paddingLeft="10px">
+                              <CheckBox id="grMessageCheckbox" text="GR Message" checked="{/DeliveryInvoice/GRMessage}" onToggle="onToggleGRMessage"/>
+                          </FlowLayout>
+                      </MatrixDataFlow>
+
+                  </MatrixLayout>
+              </Layout>
+            </Tab>
+            <Tab id="conditionsTab" text="Conditions"/>
+            <Tab id="textsTab" text="Texts"/>
+            <Tab id="addressTab" text="Address"/>
+            <Tab id="communicationTab" text="Communication"/>
+            <Tab id="partnersTab" text="Partners"/>
+            <Tab id="additionalDataTab" text="Additional Data"/>
+            <Tab id="orgDataTab" text="Org. Data"/>
+            <Tab id="statusTab" text="Status"/>
+          </TabStrip>
+        </MatrixDataFlow>
+      </MatrixLayout>
+    </Layout>
+  </View>
+
+  <Controller name="PurchaseOrderDetailsViewController">
+    <Methods>
+      <Method name="onActionBack"/>
+      <Method name="onActionSave"/>
+      <Method name="onSelectSaveOption"/>
+      <Method name="onActionDocumentOverview"/>
+      <Method name="onActionDocumentIcon"/>
+      <Method name="onActionEdit"/>
+      <Method name="onActionExport"/>
+      <Method name="onActionPrintPreview"/>
+      <Method name="onActionMessages"/>
+      <Method name="onActionInfo"/>
+      <Method name="onActionPersonalSetting"/>
+      <Method name="onActionCancel"/>
+      <Method name="onSelectPoType"/>
+      <Method name="onSelectTab">
+        <Parameters>
+          <Parameter name="id" type="string"/>
+        </Parameters>
+      </Method>
+      <Method name="onActionSearchPaymentTerms"/>
+      <Method name="onToggleExchangeRateFixed"/>
+      <Method name="onToggleGRMessage"/>
+    </Methods>
+  </Controller>
+</WebDynpro>
